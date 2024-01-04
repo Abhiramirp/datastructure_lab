@@ -1,48 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
-/*          ADJACENCY MATRIX                            */
-int source,V,E,time,visited[20],G[20][20];
+#include<stdio.h>
+
+
+int G[10][10],visited[10],n,v;
+
 void DFS(int i)
 {
     int j;
-    visited[i]=1;
-    printf(" %d->",i+1);
-    for(j=0;j<V;j++)
-    {
-        if(G[i][j]==1&&visited[j]==0)
-            DFS(j);
-    }
+    printf("\n%d",i);
+        visited[i]=1;
+    for(j=0;j<n;j++)
+        if(visited[j]==0&&G[i][j]==1)
+        DFS(j);
 }
-int main()
+
+void main()
 {
-    int i,j,v1,v2;
-    printf("\t\t\tGraphs\n");
-    printf("Enter the no of edges:");
-    scanf("%d",&E);
-    printf("Enter the no of vertices:");
-    scanf("%d",&V);
-    for(i=0;i<V;i++)
-    {
-        for(j=0;j<V;j++)
-            G[i][j]=0;
-    }
-    /*    creating edges :P    */
-    for(i=0;i<E;i++)
-    {
-        printf("Enter the edges (format: V1 V2) : ");
-        scanf("%d%d",&v1,&v2);
-        G[v1-1][v2-1]=1;
+    int i,j;
+    printf("enter the number of vertices :");
+    scanf("%d",&n);
 
-    }
-
-    for(i=0;i<V;i++)
-    {
-        for(j=0;j<V;j++)
-            printf(" %d ",G[i][j]);
-        printf("\n");
-    }
-    printf("Enter the starting node: ");
-    scanf("%d",&source);
-        DFS(source-1);
-    return 0;
+printf("enter the adjacency matrix of the graph :\n");
+for(i=0;i<n;i++)
+    for(j=0;j<n;j++)
+scanf("%d",&G[i][j]);
+for(i=0;i<n;i++)
+    visited[i]=0;
+printf("enter the starting vertex :");
+scanf("%d",&v);
+    DFS(v);
 }
+
+    
